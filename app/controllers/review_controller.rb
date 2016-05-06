@@ -35,4 +35,26 @@ class ReviewController < ApplicationController
       erb :'reviews/show_review'
     end
   end
+
+  get '/reviews/:id/edit' do 
+    if !session[:user_id]
+      redirect '/login'
+    else
+      @review = Review.find_by(id: params[:id])
+      erb :'reviews/edit_review'
+    end
+  end
+
+  patch '/reviews/:id' do
+    @review = Review.find_by(id: params[:id])
+    if params[:title] != "" && params[:content] != "" && params[:rating] != ""
+      @review.title = params[:title]
+      @review.content = params[:content]
+      @review.rating = params[:rating]
+      @review.save
+      redirect "/reviews/#{@review.id}"
+    else
+      redirect "/reviews/#{@review.id}/edit"
+    end
+  end
 end

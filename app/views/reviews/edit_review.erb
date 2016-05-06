@@ -1,0 +1,9 @@
+<strong>Edit Review</strong><br>
+<br>
+<form method="post" action="/reviews" id="reviewform">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  Title: <input type="text" name="title" /><br>
+  Content: <textarea name="content" form=reviewform></textarea><br>
+  Rating (1-10): <input type="number" name="rating" min="1" max="10" /><br><br>
+  <input type="submit" value="Edit Review" />
+</form>
