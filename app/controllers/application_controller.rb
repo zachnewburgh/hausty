@@ -7,4 +7,9 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :sessions_secret, "hausty_secret"    
   end
+
+  get '/' do
+    erb :layout
+  end
+  
 end
