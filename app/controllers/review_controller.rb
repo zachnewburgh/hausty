@@ -1,16 +1,17 @@
 class ReviewController < ApplicationController
 
-  get '/reviews' do 
-    if session[:user_id]
+  get '/reviews' do
+    if logged_in?
+      @user = User.find(current_user.id)
       @reviews = Review.all
-      erb :'reviews/reviews'    
+      erb :'reviews/reviews'
     else
       redirect to '/login'
     end
   end
 
   get '/reviews/new' do
-    if session[:user_id]
+    if logged_in?
       erb :'reviews/submit_review'
     else
       redirect '/login'
@@ -27,7 +28,7 @@ class ReviewController < ApplicationController
     end
   end
 
-  get '/reviews/:id' do 
+  get '/reviews/:id' do
     if !session[:user_id]
       redirect '/login'
     else
@@ -36,7 +37,7 @@ class ReviewController < ApplicationController
     end
   end
 
-  get '/reviews/:id/edit' do 
+  get '/reviews/:id/edit' do
     if !session[:user_id]
       redirect '/login'
     else
@@ -72,5 +73,5 @@ class ReviewController < ApplicationController
       redirect '/login'
     end
   end
-  
+
 end

@@ -1,9 +1,9 @@
 class ApartmentController < ApplicationController
 
-  get '/apartments' do 
+  get '/apartments' do
     if session[:user_id]
       @apartments = Apartment.all
-      erb :'apartments/apartments'    
+      erb :'apartments/apartments'
     else
       redirect to '/login'
     end
