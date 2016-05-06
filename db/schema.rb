@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20160506145012) do
     t.string  "content"
     t.integer "rating"
     t.integer "user_id"
-    t.integer "apartment_id"
   end
 
   create_table "users", force: :cascade do |t|
