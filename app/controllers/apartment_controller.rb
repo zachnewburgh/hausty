@@ -1,7 +1,7 @@
 class ApartmentController < ApplicationController
 
   get '/apartments' do 
-    if session[:user_id]
+    if logged_in?
       @apartments = Apartment.all
       erb :'apartments/apartments'    
     else
@@ -10,7 +10,7 @@ class ApartmentController < ApplicationController
   end
 
   get '/apartments/new' do
-    if session[:user_id]
+    if logged_in?
       erb :'apartment/list_apartment'
     else
       redirect '/login'
@@ -26,4 +26,14 @@ class ApartmentController < ApplicationController
       redirect '/apartments/new'
     end
   end
+
+  get '/apartment/:id' do
+    if logged_in?
+      @apartment = Apartment.find_by(id: params[:id])
+      erb :'apartments/show_apartment'
+    else
+      redirect '/login'
+    end
+  end
+
 end
