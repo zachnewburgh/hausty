@@ -10,7 +10,11 @@ class ReviewController < ApplicationController
   end
 
   get '/reviews/new' do
-    erb :'reviews/submit_review'
+    if session[:user_id]
+      erb :'reviews/submit_review'
+    else
+      redirect '/login'
+    end
   end
 
   post '/reviews' do
