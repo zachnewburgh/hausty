@@ -57,4 +57,20 @@ class ReviewController < ApplicationController
       redirect "/reviews/#{@review.id}/edit"
     end
   end
+
+  delete '/reviews/:id/delete' do
+    @review = Review.find_by(id: params[:id])
+    if session[:user_id]
+      @review = Review.find_by(id: params[:id])
+      if review.user_id == session[:user_id]
+        @review.delete
+        redirect '/reviews'
+      else
+        redirect '/reviews'
+      end
+    else
+      redirect '/login'
+    end
+  end
+  
 end
