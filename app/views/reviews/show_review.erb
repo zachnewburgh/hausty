@@ -2,3 +2,8 @@
 <em><%= @review.rating %> out of 10</em>
 
 <p><%= @review.content %></p>
+
+<form method="post" action="/reviews/<%= @review.id %>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Review">
+</form>
