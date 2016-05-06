@@ -21,7 +21,7 @@ class ApartmentController < ApplicationController
     if params[:street_number] != "" && params[:street_name] != "" && params[:city] != "" && params[:state] != "" && params[:country] != "" && params[:postal_code] != ""
       @apartment = Apartment.new(street_number: params[:street_number], street_name: params[:street_name], city: params[:city], state: params[:state], country: params[:country], postal_code: params[:postal_code])
       @apartment.save
-      erb :'apartments/show_apartments'
+      erb :'apartments/show_apartment'
     else
       redirect '/apartments/new'
     end

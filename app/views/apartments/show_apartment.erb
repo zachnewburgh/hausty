@@ -1,0 +1,9 @@
+<%= "#{@apartment.street_number} #{@apartment.street_name}, #{@apartment.city}, @#{@apartment.state}, #{@apartment.country} #{@apartment.postal_code}" %>
+
+<% @apartment.reviews.each do |review| %>
+  <div>
+    <%= review.title %><br>
+    <%= review.content %><br>
+    By <%= User.find_by(id: review.user_id) %>
+  </div>
+<% end %>
