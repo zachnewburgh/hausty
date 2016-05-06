@@ -14,7 +14,7 @@ class UserController < ApplicationController
     else
       @user = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], username: params[:username], password: params[:password])
       @user.save
-      session[:user_id] = @user.id
+      session[:id] = @user.id
       redirect '/reviews'
     end
   end
@@ -30,7 +30,7 @@ class UserController < ApplicationController
   post '/login' do
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
+      session[:id] = user.id
       redirect '/reviews'
     else
       redirect '/signup'
