@@ -62,7 +62,7 @@ class ReviewController < ApplicationController
     @review = Review.find_by(id: params[:id])
     if logged_in?
       @review = Review.find_by(id: params[:id])
-      if review.user_id == session[:user_id]
+      if @review.user_id == session[:user_id]
         @review.delete
         redirect '/reviews'
       else
