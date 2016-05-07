@@ -1,2 +1,6 @@
-Apartments listed here.
-
+<% Apartment.all.each do |apartment| %>
+  <div>
+    <%= apartment.address %>
+    <a href="/apartments/#{apartment.id}">Reviews</a>
+  </div>
+<% end %>

@@ -11,15 +11,15 @@ class ApartmentController < ApplicationController
 
   get '/apartments/new' do
     if logged_in?
-      erb :'apartment/list_apartment'
+      erb :'apartments/list_apartment'
     else
       redirect '/login'
     end
   end
 
   post '/apartments' do
-    if params[:street_number] != "" && params[:street_name] != "" && params[:city] != "" && params[:state] != "" && params[:country] != "" && params[:postal_code] != ""
-      @apartment = Apartment.new(street_number: params[:street_number], street_name: params[:street_name], city: params[:city], state: params[:state], country: params[:country], postal_code: params[:postal_code])
+    if params[:address1] != "" && params[:city] != "" && params[:'state'] != "" && params[:country] != "" && params[:postal_code] != ""
+      @apartment = Apartment.new(address1: params[:address1], address2: params[:address2], city: params[:city], state: params[:state], country: params[:country], postal_code: params[:postal_code])
       @apartment.save
       erb :'apartments/show_apartment'
     else

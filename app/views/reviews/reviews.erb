@@ -2,4 +2,11 @@ Welcome, !
 
 <p>Here are the reviews:</p>
 
+<% @reviews.each do |review| %>
+  <div>
+    <strong><%= review.title %></strong>, <%= review.rating %> out of 10
+    <%= review.content %>
+  </div>
+<% end %>
+
 <p><a href="/reviews/new">Create Review</a></p>
