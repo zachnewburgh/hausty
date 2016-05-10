@@ -4,7 +4,7 @@ class UserController < ApplicationController
     if !logged_in?
       erb :'users/create_user'
     else
-      redirect '/reviews'
+      redirect '/apartments'
     end
   end
 
@@ -15,7 +15,7 @@ class UserController < ApplicationController
       @user = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], username: params[:username], password: params[:password])
       @user.save
       session[:id] = @user.id
-      redirect '/reviews'
+      redirect '/apartments'
     end
   end
 
@@ -23,7 +23,7 @@ class UserController < ApplicationController
     if !logged_in?
       erb :'users/login'
     else
-      redirect '/reviews'
+      redirect '/apartments'
     end
   end
 
@@ -31,7 +31,7 @@ class UserController < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:id] = user.id
-      redirect '/reviews'
+      redirect '/apartments'
     else
       redirect '/signup'
     end
