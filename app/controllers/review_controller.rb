@@ -41,6 +41,7 @@ class ReviewController < ApplicationController
       redirect '/login'
     else
       @review = Review.find_by(id: params[:id])
+      @apartment = Apartment.find_by(id: @review.apartment_id)
       erb :'reviews/edit_review'
     end
   end

@@ -17,5 +17,8 @@
   <div>
     <h3><%= review.title %></h3>
     <p><%= review.content %></p>
+    <% if current_user.id == review.user_id %>
+      <a href="/reviews/<%= review.id %>/edit">Edit</a>
+    <% end %>
   </div>
 <% end %>
