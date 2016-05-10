@@ -14,13 +14,12 @@
 ActiveRecord::Schema.define(version: 20160506145012) do
 
   create_table "apartments", force: :cascade do |t|
-    t.integer "street_number"
-    t.string  "street_name"
-    t.string  "apartment_number"
-    t.string  "city"
-    t.string  "state"
-    t.string  "country"
-    t.string  "postal_code"
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.string "postal_code"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -28,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160506145012) do
     t.string  "content"
     t.integer "rating"
     t.integer "user_id"
+    t.integer "apartment_id"
   end
 
   create_table "users", force: :cascade do |t|

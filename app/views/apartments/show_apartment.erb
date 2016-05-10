@@ -1,3 +1,21 @@
-<%= "#{@apartment.street_number} #{@apartment.street_name}, #{@apartment.city}, @#{@apartment.state}, #{@apartment.country} #{@apartment.postal_code}" %>
+<h1><%=  @apartment.address %></h1>
 
-<% @apartment %>
+<a href="/apartments">View all apartments</a><br><br>
+
+<strong>Submit a Review</strong><br>
+<br>
+<form method="post" action="/reviews" id="reviewform">
+  Title: <input type="text" name="title" /><br>
+  Content: <textarea name="content" form=reviewform></textarea><br>
+  Rating (1-10): <input type="number" name="rating" min="1" max="10" /><br><br>
+  <input type="hidden" name="apartment_id" value="<%= @apartment.id %>">
+  <input type="hidden" name="session_id" value="<%= session[:id] %>">
+  <input type="submit" value="Submit Review" />
+</form>
+
+<% @apartment.reviews.each do |review| %>
+  <div>
+    <h3><%= review.title %></h3>
+    <p><%= review.content %></p>
+  </div>
+<% end %>

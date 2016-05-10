@@ -4,3 +4,11 @@ require_relative './config/environment'
 require 'sinatra/activerecord/rake'
 
 # Type `rake -T` on your command line to see the available rake tasks.
+
+task :console do
+  require 'irb'
+  require 'irb/completion'
+  require './config/environment' # You know what to do.
+  ARGV.clear
+  IRB.start
+end

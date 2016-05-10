@@ -18,22 +18,43 @@ class ApartmentController < ApplicationController
   end
 
   post '/apartments' do
-    if params[:address1] != "" && params[:city] != "" && params[:'state'] != "" && params[:country] != "" && params[:postal_code] != ""
-      @apartment = Apartment.new(address1: params[:address1], address2: params[:address2], city: params[:city], state: params[:state], country: params[:country], postal_code: params[:postal_code])
+    if req_params
+      @apartment = Apartment.new(apt_params)
       @apartment.save
-      erb :'apartments/show_apartment'
+      redirect "/apartments/#{@apartment.id}"
     else
       redirect '/apartments/new'
     end
   end
 
-  get '/apartment/:id' do
+  post '/reviews' do
+    if params[:title] != "" && params[:content] != "" && params[:rating] != ""
+      @review = Review.new(title: params[:title], content: params[:content], rating: params[:rating], user_id: params[:session_id], apartment_id: params[:apartment_id])
+      @review.save
+      @apartment = Apartment.find_by(id: params[:apartment_id])
+      erb :'apartments/show_apartment'
+    else
+      redirect '/apartments'
+    end
+  end
+
+  get '/apartments/:id' do
     if logged_in?
       @apartment = Apartment.find_by(id: params[:id])
       erb :'apartments/show_apartment'
     else
       redirect '/login'
     end
+  end
+
+  private
+
+  def req_params
+    params[:address1] != "" && params[:city] != "" && params[:country] != "" && params[:postal_code] != ""
+  end
+
+  def apt_params
+    {address1: params[:address1], address2: params[:address2], city: params[:city], state: params[:state], country: params[:country], postal_code: params[:postal_code].gsub(" ","")}
   end
 
 end

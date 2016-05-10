@@ -11,4 +11,8 @@ class Apartment < ActiveRecord::Base
   #   end
   #   rating_avg = rating_sum/rating_count
   # end
+
+  def address
+    "#{address1}, #{address2}, #{city}, #{state}, #{country} #{postal_code}"
+  end
 end

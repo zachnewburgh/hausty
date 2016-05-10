@@ -1,6 +1,11 @@
+<h1>Welcome to Hausty</h1>
+
+<a href="/apartments/new">Add an apartment</a>
+
 <% Apartment.all.each do |apartment| %>
   <div>
-    <%= apartment.address %>
-    <a href="/apartments/#{apartment.id}">Reviews</a>
+    <h1><%= apartment.address %></h1>
+    <a href="/apartments/<%=apartment.id%>">Reviews</a>
+    <%= apartment.id %>
   </div>
 <% end %>
