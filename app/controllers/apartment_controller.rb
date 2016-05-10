@@ -19,8 +19,8 @@ class ApartmentController < ApplicationController
 
   post '/apartments' do
     if req_params
-      @apartment = Apartment.new(apt_params)
-      @apartment.save
+      @apartment = Apartment.find_or_create_by(apt_params)
+      # @apartment.save
       redirect "/apartments/#{@apartment.id}"
     else
       redirect '/apartments/new'
@@ -29,8 +29,8 @@ class ApartmentController < ApplicationController
 
   post '/reviews' do
     if params[:title] != "" && params[:content] != "" && params[:rating] != ""
-      @review = Review.new(title: params[:title], content: params[:content], rating: params[:rating], user_id: params[:session_id], apartment_id: params[:apartment_id])
-      @review.save
+      @review = Review.find_or_create_by(title: params[:title], content: params[:content], rating: params[:rating], user_id: params[:session_id], apartment_id: params[:apartment_id])
+      # @review.save
       @apartment = Apartment.find_by(id: params[:apartment_id])
       erb :'apartments/show_apartment'
     else

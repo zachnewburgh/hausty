@@ -1,13 +1,13 @@
 class ReviewController < ApplicationController
 
-  # get '/reviews' do 
-  #   if logged_in?
-  #     @reviews = Review.all
-  #     erb :'reviews/reviews'  
-  #   else
-  #     redirect to '/login'
-  #   end
-  # end
+  get '/reviews' do 
+    if logged_in?
+      @reviews = Review.all
+      erb :'reviews/reviews'  
+    else
+      redirect to '/login'
+    end
+  end
 
   # get '/reviews/new' do
   #   if logged_in?

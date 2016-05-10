@@ -13,6 +13,18 @@ class Apartment < ActiveRecord::Base
   # end
 
   def address
-    "#{address1}, #{address2}, #{city}, #{state}, #{country} #{postal_code}"
+    if address2 != ""
+      if state != ""
+        "#{address1}, " + "#{address2}, " + "#{city}, " + "#{state}, " + "#{country}, " + "#{postal_code}"
+      else
+        "#{address1}, " + "#{address2}, " + "#{city}, " + "#{country}, " + "#{postal_code}"
+      end
+    else
+      if state!= ""
+        "#{address1}, " + "#{city}, " + "#{state}, " + "#{country}, " + "#{postal_code}"
+      else
+        "#{address1}, " + "#{city}, " + "#{country}, " + "#{postal_code}"
+      end
+    end
   end
 end

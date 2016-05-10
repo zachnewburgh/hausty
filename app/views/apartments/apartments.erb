@@ -1,11 +1,10 @@
-<h1>Welcome to Hausty</h1>
+<h1>Welcome to Hausty</h1>                                  
 
 <a href="/apartments/new">Add an apartment</a>
 
 <% Apartment.all.each do |apartment| %>
   <div>
-    <h1><%= apartment.address %></h1>
+    <h3><%= apartment.address %></h3>
     <a href="/apartments/<%=apartment.id%>">Reviews</a>
-    <%= apartment.id %>
   </div>
 <% end %>
