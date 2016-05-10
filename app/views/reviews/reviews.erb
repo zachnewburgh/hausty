@@ -6,9 +6,9 @@ Welcome, <%= current_user.first_name %>!
   <% if review.user_id == session[:id] %>
     <div>
       <h3><%= Apartment.find_by(id: review.apartment_id).address %></h3>
-      <strong><%= review.title %></strong> <%= review.rating %>/10
+      <strong><%= review.title %></strong> (<%= review.rating %>/10)
       <br><%= review.content %>
-      <br><a href="/reviews/#{review.id}/edit">Edit</a>
+      <br><a href="/reviews/<%= review.id %>/edit">Edit</a>
     </div>
   <% end %>
 <% end %>

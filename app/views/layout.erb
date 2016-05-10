@@ -6,12 +6,17 @@
 <body>
   
   <% if logged_in? %>
-    <div id="navbar">
-      <a href="/apartments">Apartments</a> | <a href="/reviews">Reviews</a> | <a href="/logout">Logout</a>
-    </div><br>
+    <ul class="nav nav-pills">
+      <li role="presentation" class="active"><a href="/apartments">Apartments</a></li>
+      <li role="presentation"><a href="/reviews">Reviews</a></li>
+      <li role="presentation"><a href="/logout">Logout</a></li>
+    </ul>
   <% end %>
 
   <%= yield %>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   
 </body>
 </html>
