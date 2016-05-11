@@ -20,7 +20,6 @@ class ApartmentController < ApplicationController
   post '/apartments' do
     if req_params
       @apartment = Apartment.find_or_create_by(apt_params)
-      # @apartment.save
       redirect "/apartments/#{@apartment.id}"
     else
       redirect '/apartments/new'

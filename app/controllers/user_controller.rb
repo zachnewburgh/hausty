@@ -10,6 +10,7 @@ class UserController < ApplicationController
 
   post '/signup' do
     if params[:first_name] == "" || params[:last_name] == "" || params[:email] == "" || params[:username] == "" || params[:password] == "" 
+      flash[:notice] = "=> Field left blank, try again!"
       redirect '/signup'
     else
       @user = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], username: params[:username], password: params[:password])

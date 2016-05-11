@@ -9,24 +9,6 @@ class ReviewController < ApplicationController
     end
   end
 
-  # get '/reviews/new' do
-  #   if logged_in?
-  #     erb :'reviews/submit_review'
-  #   else
-  #     redirect '/login'
-  #   end
-  # end
-
-  # post '/reviews' do
-  #   if params[:title] != "" && params[:content] != "" && params[:rating] != ""
-  #     @review = Review.new(title: params[:title], content: params[:content], rating: params[:rating], user_id: session[:id], apartment_id: @apartment.id)
-  #     @review.save
-  #     erb :'apartments/show_apartment'
-  #   else
-  #     redirect '/apartments'
-  #   end
-  # end
-
   get '/reviews/:id' do 
     if !logged_in?
       redirect '/login'

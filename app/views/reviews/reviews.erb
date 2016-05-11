@@ -1,16 +1,18 @@
-Welcome, <%= current_user.first_name %>!
+Welcome, <%= current_user.first_name %>!<br><br>
 
 <p>Here are your reviews:</p>
 
 <% @reviews.each do |review| %>
   <% if review.user_id == session[:id] %>
     <div>
-      <h3><%= Apartment.find_by(id: review.apartment_id).address %></h3>
+      <h3><a href="/apartments/<%= Apartment.find_by(id: review.apartment_id).id%>"><%= Apartment.find_by(id: review.apartment_id).address %></a></h3>
       <strong><%= review.title %></strong> (<%= review.rating %>/10)
-      <br><%= review.content %>
-      <br><a href="/reviews/<%= review.id %>/edit">Edit</a>
+      <br><%= review.content %><br>
+      <br><a href="/reviews/<%= review.id %>/edit"><button>Edit Review</button></a>
+      <form method="post" action="/reviews/<%=review.id%>/delete">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Review">
+      </form>
     </div>
   <% end %>
 <% end %>
-
-<!-- <p><a href="/reviews/new">Create Review</a></p> -->

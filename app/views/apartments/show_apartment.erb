@@ -13,12 +13,18 @@
   <input type="submit" value="Submit Review" />
 </form>
 
+<h2>Reviews (<%= @apartment.reviews.count %>)</h2>
+
 <% @apartment.reviews.each do |review| %>
   <div>
     <h3><%= review.title %></h3>
     <p><%= review.content %></p>
     <% if current_user.id == review.user_id %>
-      <a href="/reviews/<%= review.id %>/edit">Edit</a>
+      <a href="/reviews/<%= review.id %>/edit"><button>Edit Review</button></a>
+      <form method="post" action="/reviews/<%=review.id%>/delete">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Review">
+      </form>
     <% end %>
   </div>
 <% end %>

@@ -1,8 +1,10 @@
-<h2><%= @review.title %></h2> 
-<em><%= @review.rating %> out of 10</em>
+<h3><%= Apartment.find_by(id: @review.apartment_id).address %></h3>
+
+<strong><%= @review.title %></strong> (<%= @review.rating %>/10)
 
 <p><%= @review.content %></p>
 
+<a href="/reviews/<%= @review.id %>/edit"><button>Edit Review</button></a>
 <form method="post" action="/reviews/<%= @review.id %>/delete">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Review">
