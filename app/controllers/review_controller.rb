@@ -3,9 +3,19 @@ class ReviewController < ApplicationController
   get '/reviews' do 
     if logged_in?
       @reviews = Review.all
-      erb :'reviews/reviews'  
+      erb :'reviews/index'  
     else
       redirect to '/login'
+    end
+  end
+
+  post '/reviews' do
+    if params[:title] != "" && params[:content] != "" && params[:rating] != ""
+      @review = Review.find_or_create_by(title: params[:title], content: params[:content], rating: params[:rating], user_id: params[:session_id], apartment_id: params[:apartment_id])
+      @apartment = Apartment.find_by(id: params[:apartment_id])
+      erb :'apartments/show'
+    else
+      redirect '/apartments'
     end
   end
 
@@ -14,7 +24,7 @@ class ReviewController < ApplicationController
       redirect '/login'
     else
       @review = Review.find_by(id: params[:id])
-      erb :'reviews/show_review'
+      erb :'reviews/show'
     end
   end
 
@@ -24,7 +34,7 @@ class ReviewController < ApplicationController
     else
       @review = Review.find_by(id: params[:id])
       @apartment = Apartment.find_by(id: @review.apartment_id)
-      erb :'reviews/edit_review'
+      erb :'reviews/edit'
     end
   end
 
